@@ -49,4 +49,72 @@ ylabel('Magnitude');
 
 
 
+%% ----------3b ------------------------
+% --- Part (b): High-Pass Filter ---
+% (Add this code section after the code for part (a) or run independently
+% after generating the 'noise' signal and setting Fs, Ts etc.)
+
+fc_hp = 1000; % Cutoff frequency in Hz
+trans_width_hp = 500; % Transition band width in Hz
+nyquist_freq = Fs / 2; % Defined in part (a) code
+filter_order = 100;    % Defined in part (a) code
+
+% Define frequency bands (normalized by Nyquist frequency)
+% [0, Stopband_End, Passband_Start, Nyquist]
+f_hp_norm = [0, fc_hp-trans_width_hp/2, fc_hp+trans_width_hp/2, nyquist_freq] / nyquist_freq;
+
+% Define desired amplitudes in those bands
+% [Stop, Stop, Pass, Pass]
+a_hp = [0, 0, 1, 1];
+
+% Design the filter coefficients
+b_hp = firpm(filter_order, f_hp_norm, a_hp);
+
+% Apply Filter
+filtered_noise_hp = filter(b_hp, 1, noise);
+
+% Plot Output Spectrum
+figure('Name', 'HPF Output');
+plotspec(filtered_noise_hp, Ts);
+title('Output Noise Spectrum After HPF (fc = 1 kHz)');
+xlabel('Frequency (Hz)');
+ylabel('Magnitude');
+
+
+
+
+%-------3c------------------
+% --- Part (c): Band-Pass Filter ---
+% (This code assumes 'noise', 'Fs', 'Ts' are still in the workspace)
+
+fl_bp = 2000; % Lower cutoff frequency in Hz
+fh_bp = 5000; % Higher cutoff frequency in Hz
+trans_width_bp = 500; % Transition band width in Hz
+nyquist_freq = Fs / 2;
+filter_order = 100;
+
+% Define frequency bands (normalized by Nyquist frequency)
+% [0, stop1_end, pass_start, pass_end, stop2_start, nyquist]
+f_bp_norm = [0, fl_bp-trans_width_bp/2, fl_bp+trans_width_bp/2, ...
+             fh_bp-trans_width_bp/2, fh_bp+trans_width_bp/2, nyquist_freq] / nyquist_freq;
+
+% Define desired amplitudes in those bands
+% [Stop, Stop, Pass, Pass, Stop, Stop]
+a_bp = [0, 0, 1, 1, 0, 0];
+
+% Design the filter coefficients
+b_bp = firpm(filter_order, f_bp_norm, a_bp);
+
+% Apply Filter
+filtered_noise_bp = filter(b_bp, 1, noise);
+
+% Plot Output Spectrum
+figure('Name', 'BPF Output');
+plotspec(filtered_noise_bp, Ts);
+title('Output Noise Spectrum After BPF (Passband: 2-5 kHz)');
+xlabel('Frequency (Hz)');
+ylabel('Magnitude');
+
+
+
 
