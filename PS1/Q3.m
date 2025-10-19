@@ -1,5 +1,6 @@
 % Low-Pass Filter
-% Setuo Noise
+clear; clc; close all;
+% Setup Noise
 Fs = 20000;     % Sampling frequencz in Hz
 Ts = 1/Fs;      % Sampling Period
 T = 1;          % Total time duration in seconds
