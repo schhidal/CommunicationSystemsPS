@@ -43,8 +43,35 @@ ylabel('Amplitude');
 axis([-2 5 -1.5 1.50]);
 grid on;
 
+% x5
+subplot(4, 2, 5);
+x5 = (1 - exp(-2 .* t)) .* (exp(-t) .* (t >= 0));
+plot(t , x5);
+title('x_5(t)=(1 - exp(-2 .* t)) .* (exp(-t) .* (t >= 0))');
+xlabel('Time (s)');
+ylabel('Amplitude');
+axis([-2 5 -1.5 1.50]);
+grid on;
+
+% x6
+subplot(4, 2, 6);
+x6 = (cos(2*pi*t) .* (exp(-t) .* (t >= 0)));
+plot(t, x6);
+title('cos(2*pi*t) .* (exp(-t) .* (t >= 0))');
+xlabel('Time (s)');
+ylabel('Amplitude');
+axis([-2 5 -1.5 1.50]);
+grid on;
 
 
-
+% x7
+subplot(4, 2, 7);
+x7 = (2*rand(size(t))-1);
+plot(t, x7);
+title('2*rand(size(t))-1');
+xlabel('Time (s)');
+ylabel('Amplitude');
+axis([-2 5 -1.5 1.50]);
+grid on;
 
 
