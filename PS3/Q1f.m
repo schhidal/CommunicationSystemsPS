@@ -1,4 +1,4 @@
-% --MATLAB/Octave Script for part(f): IF to BAseband --
+% --MATLAB/Octave Script for part(f): IF to Baseband --
 fc = 1000;    % Carrier frequency in Hz
 f_if = 200;    % Target INtermediate frequency  in Hz
 f_baseband_max = 50;    % Max frequency of our Baseband sinc signal in Hz
