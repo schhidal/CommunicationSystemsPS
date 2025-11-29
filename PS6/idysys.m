@@ -19,6 +19,7 @@ fc=20;                        % carrier frequency
 c=cos(2*pi*fc*t);             % carrier
 r=c.*x;                       % modulate message with carrier
 
+
 %RECEIVER
 % am demodulation of received signal sequence r
 c2=cos(2*pi*fc*t);             % synchronized cosine for mixing
@@ -41,3 +42,9 @@ pererr=100*sum(abs(sign(mprime-m(1:lmp))))/lmp, % symbol error
 % decode decision device output to text string
 reconstructed_message=pam2letters(mprime)
 
+
+figure(3);
+plotspec(r, 1/M);
+
+figure(4);
+plotspec(x2, 1/M);
